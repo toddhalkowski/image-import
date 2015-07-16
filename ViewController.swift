@@ -4,13 +4,43 @@
 //  Copyright 2011-present Parse Inc. All rights reserved.
 //
 //  Created by Todd Halkowski
-// cloud storage app using Parse and Bolts framework
+// allows the user to select an image from the camera roll and then imports the image to the view controller
 
 
 import UIKit
 import Parse
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+        
+        println("Image Selected")
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
+        importedImage.image = image 
+        
+        
+    }
+    
+    
+    @IBAction func importImage(sender: AnyObject) {
+        
+        var image = UIImagePickerController()
+        image.delegate = self
+        image.sourceType =  UIImagePickerControllerSourceType.PhotoLibrary
+        image.allowsEditing = false
+        
+        self.presentViewController(image, animated: true, completion: nil)
+        
+        
+    }
+    
+    
+    @IBOutlet weak var importedImage: UIImageView!
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +71,7 @@ class ViewController: UIViewController {
             }
             
         }
-*/
+
         
         var query = PFQuery(className: "Products")
         
@@ -68,7 +98,7 @@ class ViewController: UIViewController {
             
         })
 
-        
+        */
     }
 
     override func didReceiveMemoryWarning() {
