@@ -5,6 +5,7 @@
 //
 //  Created by Todd Halkowski
 // allows the user to select an image from the camera roll and then imports the image to the view controller
+// UIActivityIndicator and createAlert additions for pause function
 
 
 import UIKit
